@@ -25,7 +25,7 @@ static void	handler(int signo, siginfo_t *info, void *context)
 	}
 }
 
-int main(void)
+int	main(void)
 {
 	struct sigaction	sig_struct;
 

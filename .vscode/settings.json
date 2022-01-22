@@ -1,0 +1,13 @@
+{
+	"files.associations": {
+		"types.h": "c",
+		"libft.h": "c",
+		"array": "c",
+		"string_view": "c",
+		"initializer_list": "c",
+		"utility": "c",
+		"random": "c",
+		"unistd.h": "c",
+		"minitalk.h": "c"
+	}
+}

@@ -6,7 +6,7 @@
 /*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/23 00:48:47 by jeounpar          #+#    #+#             */
-/*   Updated: 2022/01/23 00:48:48 by jeounpar         ###   ########.fr       */
+/*   Updated: 2022/02/06 13:36:46 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,13 @@
 
 t_msg	g_msg;
 
-static void	handler(int signo, siginfo_t *info, void *context)
+void	handler(int signo)
 {
 	int	shitf_left;
 
-	(void)info;
-	(void)context;
 	if (signo == SIGUSR1)
 		shitf_left = 0;
-	else if (signo == SIGUSR2)
+	else
 		shitf_left = 1;
 	g_msg.c += ((shitf_left & 1) << g_msg.size);
 	g_msg.size += 1;
@@ -39,15 +37,11 @@ static void	handler(int signo, siginfo_t *info, void *context)
 
 int	main(void)
 {
-	struct sigaction	sig_struct;
-
 	g_msg.c = 0;
 	g_msg.size = 0;
-	sig_struct.sa_sigaction = handler;
-	sig_struct.sa_flags = SA_SIGINFO;
 	ft_printf("Server PID : %d\n", getpid());
-	sigaction(SIGUSR1, &sig_struct, 0);
-	sigaction(SIGUSR2, &sig_struct, 0);
+	signal(SIGUSR1, handler);
+	signal(SIGUSR2, handler);
 	while (1)
 		pause();
 	return (0);

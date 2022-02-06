@@ -50,10 +50,10 @@ $(NAME) : $(OBJECTS)
 	ar rcs $(NAME) $(OBJECTS)
 
 clean:
-	rm -f $(OBJECTS)
+	rm -rf $(OBJECTS)
   
 fclean: clean
-	rm -f $(NAME)
+	rm -rf $(NAME)
 
 re: fclean all
 

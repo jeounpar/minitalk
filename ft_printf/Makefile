@@ -13,6 +13,7 @@
 NAME		= libftprintf.a
 LIBFTDIR	= ./libft
 LIBFTFILE	= libft.a
+CC			= gcc
 CFLAGS = -Wall -Wextra -Werror
 SRCS = ft_printf.c \
 	ft_printf_format.c \
@@ -23,7 +24,6 @@ OBJECTS = $(SRCS:.c=.o)
 
 
 $(NAME) : $(OBJECTS)
-	make -C $(LIBFTDIR)
 	cp $(LIBFTDIR)/$(LIBFTFILE) $(NAME)
 	ar rcs $(NAME) $(OBJECTS)
 
@@ -36,7 +36,6 @@ clean :
 	rm -f $(OBJECTS)
 
 fclean : clean
-	make -C $(LIBFTDIR) fclean
 	rm -f $(NAME)
 
 re : clean all

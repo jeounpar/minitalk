@@ -6,7 +6,7 @@
 /*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/23 00:48:52 by jeounpar          #+#    #+#             */
-/*   Updated: 2022/01/23 00:51:38 by jeounpar         ###   ########.fr       */
+/*   Updated: 2022/02/06 13:26:13 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,6 @@ static void	send_msg_by_bit(int pid, char *msg, size_t msg_len)
 	}
 }
 
-static void	confirm_from_server(int signo)
-{
-	ft_printf("Message Confrim\n");
-}
-
 int	main(int argc, char *argv[])
 {
 	int	pid;
@@ -59,6 +54,8 @@ int	main(int argc, char *argv[])
 	if (argc == 3)
 	{
 		pid = ft_atoi(argv[1]);
+		if (pid < 100 || pid > 100000)
+			return (0);
 		send_msg_by_bit (pid, argv[2], ft_strlen(argv[2]));
 	}
 	return (0);
